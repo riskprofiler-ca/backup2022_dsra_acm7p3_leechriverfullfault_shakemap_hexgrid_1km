@@ -38,7 +38,7 @@ jobs:
           tileset="$(basename *.zip.00 .zip.00)"
           cat *.zip.?? > "$tileset.zip"
           ls -l *.zip
-          time eatmydata unzip -q "$tileset.zip" "${tileset}/EPSG_900913/8/*"
+          time eatmydata unzip -q "$tileset.zip"
           ls -l "$tileset.zip"
           mv "$tileset" public
           ls -l public
@@ -49,4 +49,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          # force_orphan: true
+          force_orphan: true
