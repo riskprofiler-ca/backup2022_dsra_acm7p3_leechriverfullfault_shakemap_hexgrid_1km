@@ -39,7 +39,7 @@ jobs:
           ls -l *.zip
           time eatmydata unzip -q "$tileset.zip" "${tileset}/EPSG_900913/8/*"
           ls -l "$tileset.zip"
-          mv "$tileset.zip" public
+          mv "$tileset" public
           ls -l public
           du -csh public
 
