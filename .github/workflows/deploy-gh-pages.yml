@@ -31,8 +31,14 @@ jobs:
 
       - name: Extract vector tiles from archive
         run: |
+          set -x
+          ls -l
           cat *.zip.?? > $(basename *.zip.aa .aa)
+          ls -l
           time eatmydata unzip -q *.zip
+          ls -l
+          ls -l *.zip
+          ls -l $(basename *.zip .zip)
           mv $(basename *.zip .zip) public
 
       - name: Deploy to gh-pages branch as GitHub Pages
