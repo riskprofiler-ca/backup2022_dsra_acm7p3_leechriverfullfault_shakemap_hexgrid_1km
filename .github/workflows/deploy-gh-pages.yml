@@ -9,7 +9,7 @@ concurrency: deploy-gh-pages
 
 jobs:
   deploy-gh-pages:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: "!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]')"
     env:
       TZ: America/Vancouver
@@ -21,6 +21,7 @@ jobs:
       - name: Make more room by deleting unused software
         if: ${{ github.event_name != 'schedule' }}
         run: |
+          set -x
           df -h
           sudo eatmydata rm -rf /usr/share/dotnet       # 24.1 GB
           sudo eatmydata rm -rf /usr/local/lib/android  # 11.3 GB
@@ -34,9 +35,8 @@ jobs:
           set -x
           ls -l
           cat *.zip.?? > $(basename *.zip.00 .00)
-          ls -l
-          time eatmydata unzip -q *.zip
           ls -l *.zip
+          time eatmydata unzip -q *.zip
           ls -l $(basename *.zip .zip)
           mv $(basename *.zip .zip) public
           ls -l public
