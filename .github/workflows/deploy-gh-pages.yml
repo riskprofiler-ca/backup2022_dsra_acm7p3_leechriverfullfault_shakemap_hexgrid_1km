@@ -33,7 +33,7 @@ jobs:
         run: |
           set -x
           ls -l
-          cat *.zip.?? > $(basename *.zip.aa .aa)
+          cat *.zip.?? > $(basename *.zip.00 .00)
           ls -l
           time eatmydata unzip -q *.zip
           ls -l
